@@ -100,7 +100,7 @@ static BOOL _isInterceptedSelector(SEL sel)
 
 
 #pragma mark -
-#pragma mark ASTableView.
+#pragma mark ASTableView
 
 @interface ASTableView () <ASRangeControllerDelegate, ASDataControllerSource> {
   _ASTableViewProxy *_proxyDataSource;
@@ -117,7 +117,7 @@ static BOOL _isInterceptedSelector(SEL sel)
 @implementation ASTableView
 
 #pragma mark -
-#pragma mark Lifecycle.
+#pragma mark Lifecycle
 
 - (instancetype)initWithFrame:(CGRect)frame style:(UITableViewStyle)style
 {
@@ -141,7 +141,7 @@ static BOOL _isInterceptedSelector(SEL sel)
 }
 
 #pragma mark -
-#pragma mark Overrides.
+#pragma mark Overrides
 
 - (void)setDataSource:(id<UITableViewDataSource>)dataSource
 {
@@ -198,7 +198,8 @@ static BOOL _isInterceptedSelector(SEL sel)
   _layoutController.tuningParameters = tuningParameters;
 }
 
-#pragma mark Assertions.
+#pragma mark -
+#pragma mark Assertions
 
 - (void)throwUnimplementedException
 {
@@ -216,6 +217,10 @@ static BOOL _isInterceptedSelector(SEL sel)
 {
   [self throwUnimplementedException];
 }
+
+
+#pragma mark -
+#pragma mark Editing
 
 - (void)insertSections:(NSIndexSet *)sections withRowAnimation:(UITableViewRowAnimation)animation
 {
@@ -258,7 +263,7 @@ static BOOL _isInterceptedSelector(SEL sel)
 }
 
 #pragma mark -
-#pragma mark Intercepted selectors.
+#pragma mark Intercepted selectors
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
@@ -335,14 +340,16 @@ static BOOL _isInterceptedSelector(SEL sel)
 
 
 #pragma mark -
-#pragma mark ASRangeControllerDelegate.
+#pragma mark ASRangeControllerDelegate
 
-- (void)rangeControllerBeginUpdates:(ASRangeController *)rangeController {
+- (void)rangeControllerBeginUpdates:(ASRangeController *)rangeController
+{
   ASDisplayNodeAssertMainThread();
   [super beginUpdates];
 }
 
-- (void)rangeControllerEndUpdates:(ASRangeController *)rangeController {
+- (void)rangeControllerEndUpdates:(ASRangeController *)rangeController
+{
   ASDisplayNodeAssertMainThread();
   [super endUpdates];
 }
